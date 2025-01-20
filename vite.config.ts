@@ -19,7 +19,9 @@ export default defineConfig(({ mode, }) => {
         },
         resolve: {
             alias: {
+                '@': path.resolve(__dirname, './src'),
                 '@ioc': path.resolve(__dirname, './src/ioc'),
+                '@apps': path.resolve(__dirname, './src/apps'),
                 '@Shared': path.resolve(__dirname, './src/apps/Shared'),
                 '@shared': path.resolve(__dirname, './src/contexts/shared'),
             },

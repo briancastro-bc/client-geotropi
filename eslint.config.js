@@ -32,6 +32,7 @@ export default tseslint.config(
             'no-unused-vars': 'off',
             'no-unused-expressions': 'off',
             'curly': ['error', 'multi'],
+            '@typescript-eslint/no-explicit-any': 'off',
         },
     },
 )
