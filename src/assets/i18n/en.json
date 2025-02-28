@@ -1,3 +1,49 @@
 {
-    "translation": {}
+    "translation": {
+        "errors": {
+            "exception": "Oops! {{error}}",
+            "default": "Oops! Something went wrong. Retry later."
+        },
+        "success": {
+            "done": "Woohoo! Well Done."
+        },
+        "common": {
+            "complete": "Complete",
+            "goback": "Go back",
+            "back": "Back",
+            "previous": "Previous",
+            "next": "Next"
+        },
+        "signup": {
+            "heading": "Get started now",
+            "description": "Create a new account to explore about our app features for you",
+            "firstStep": {
+                "google": "Continue with Google",
+                "microsoft": "Continue with Microsoft",
+                "email": "Continue with Email"
+            },
+            "secondStep": {
+                "givenName": {
+                    "label": "First Name",
+                    "placeholder": "John"
+                },
+                "middleName": {
+                    "label": "",
+                    "placeholder": "Middle name"
+                },
+                "familyName": {
+                    "label": "Last Name",
+                    "placeholder": "Doe"
+                },
+                "email": {
+                    "label": "Email Address",
+                    "placeholder": "john@mail.com"
+                },
+                "password": {
+                    "label": "Password",
+                    "placeholder": "* * * * * * * *"
+                }
+            }
+        }
+    }
 }

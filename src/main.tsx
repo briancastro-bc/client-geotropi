@@ -1,19 +1,20 @@
+import 'reflect-metadata';
+import '@ant-design/v5-patch-for-react-19';
+
 import './index.css';
 
-import 'reflect-metadata';
-
-import { StrictMode, } from 'react';
+import {
+    Suspense,
+    StrictMode,
+} from 'react';
 import { createRoot, } from 'react-dom/client';
 import { initReactI18next, } from 'react-i18next';
 
 import i18next from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-import App from '@/App.tsx';
-import es from '@/assets/i18n/es.json';
-import en from '@/assets/i18n/en.json';
-
-import AppProvider from '@Shared/Providers/AppProvider.tsx';
+import App from './App.tsx';
+import FullscreenSkeleton from 'theme/layouts/FullscreenSkeleton';
 
 async function init(): Promise<void> {
     await i18next
@@ -22,17 +23,17 @@ async function init(): Promise<void> {
         .init<any>({
             debug: true,
             resources: {
-                es,
-                en,
+                es: (await import('i18n/es.json')).default,
+                en: (await import('i18n/en.json')).default,
             },
-            fallbackLng: 'es',
+            fallbackLng: 'en',
             lowerCaseLng: true,
             returnNull: true,
             returnObjects: true,
             interpolation: {
                 escapeValue: true,
             },
-        })
+        });
 }
 
 function render(): void {
@@ -41,9 +42,9 @@ function render(): void {
     const root = createRoot(rootElement!);
     root.render(
         <StrictMode>
-            <AppProvider>
+            <Suspense fallback={<FullscreenSkeleton />}>
                 <App/>
-            </AppProvider>
+            </Suspense>
         </StrictMode>
     );
 }

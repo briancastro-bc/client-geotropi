@@ -1,8 +1,8 @@
 import js from '@eslint/js'
 import globals from 'globals'
+import tseslint from 'typescript-eslint'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
-import tseslint from 'typescript-eslint'
 
 export default tseslint.config(
     {
@@ -28,6 +28,7 @@ export default tseslint.config(
                 'warn',
                 { allowConstantExport: true },
             ],
+            'curly': 'off',
             'no-var': 'error',
             'no-unused-vars': 'off',
             'no-unused-expressions': 'off',
