@@ -1,13 +1,18 @@
-import { FC, } from 'react';
+import {
+    FC,
+    ComponentProps,
+} from 'react';
 
 import DeviceDetector from 'theme/layouts/DeviceDetector';
 
 import GoBackMobile from './Mobile';
 
-export type GoBackProps = object;
+export type GoBackProps = ComponentProps<'div'> & {
+    showText?: boolean;
+};
 
 const GoBack: FC<GoBackProps> = (props) => <DeviceDetector
-    mobile={<GoBackMobile {...props}/>}
+    mobile={<GoBackMobile ref={props.ref} {...props}/>}
     desktop={<p>Atras</p>}
 />
 

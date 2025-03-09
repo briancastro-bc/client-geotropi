@@ -10,7 +10,15 @@ const signupAtom = atom<SignupState>({
     provider: null,
 });
 
+type NewWorkspaceState = Pick<SignupState, 'currentStep'>;
+
+const newWorkspaceAtom = atom<NewWorkspaceState>({
+    currentStep: 0,
+});
+
 export {
     signupAtom,
     type SignupState,
+    newWorkspaceAtom,
+    type NewWorkspaceState,
 };

@@ -14,6 +14,12 @@
             "previous": "Previous",
             "next": "Next"
         },
+        "bottom": {
+            "home": "Home",
+            "messages": "Messages",
+            "explore": "Explore",
+            "favorites": "Favorites"
+        },
         "signup": {
             "heading": "Get started now",
             "description": "Create a new account to explore about our app features for you",
@@ -42,6 +48,20 @@
                 "password": {
                     "label": "Password",
                     "placeholder": "* * * * * * * *"
+                }
+            }
+        },
+        "newWorkspace": {
+            "firstStep": {
+                "heading": "Workspace Overview",
+                "subheading": "Enter basic details to create your workspace.",
+                "name": {
+                    "label": "Name",
+                    "placeholder": "My company"
+                },
+                "description": {
+                    "label": "Description",
+                    "placeholder": "The most company of the world"
                 }
             }
         }

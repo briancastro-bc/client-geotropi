@@ -17,12 +17,12 @@ import {
 import GoBack from 'theme/layouts/GoBack';
 import Stepper from 'theme/layouts/Stepper';
 
-import { slideUp, } from 'shared/animations';
+import { slideY, } from 'shared/animations';
 
 import { signupAtom, } from 'portal/state/atoms';
 
-import SignupMobileFirstStep from 'portal/sections/Mobile/SignupMobileFirstStep';
-import SignupMobileSecondStep from 'portal/sections/Mobile/SignupMobileSecondStep';
+import SignupMobileFirstStep from 'portal/sections/Signup/Mobile/SignupMobileFirstStep';
+import SignupMobileSecondStep from 'portal/sections/Signup/Mobile/SignupMobileSecondStep';
 
 type SignupMobileProps = object;
 
@@ -43,7 +43,7 @@ const SignupMobile: FC<SignupMobileProps> = () => {
             </motion.div>
             <motion.div
                 ref={containerRef}
-                {...slideUp(1000) as MotionValue<number>}
+                {...slideY(1000) as MotionValue<number>}
                 className='z-10 w-full p-5 absolute bottom-0 flex flex-col items-center justify-end bg-gray-100 rounded-t-3xl fill-primary-500'
             >
                 <motion.div className='mb-3'>

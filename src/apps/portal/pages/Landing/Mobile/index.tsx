@@ -1,6 +1,8 @@
 import { FC, } from 'react';
 
-type LandingMobileProps = object;
+import { LandingProps, } from 'portal/pages/Landing';
+
+type LandingMobileProps = LandingProps;
 
 const LandingMobile: FC<LandingMobileProps> = () => {
     return (

@@ -7,12 +7,14 @@ import { MotionProps, } from 'motion/react';
 export default (y: number | string = 1000): MotionProps => ({
     initial: {
         y,
+        scale: 0,
     },
     animate: {
         y: 0,
+        scale: 1,
         transition: {
             ease: 'easeInOut',
-            duration: 1.25,
+            duration: 1,
         },
     },
 });

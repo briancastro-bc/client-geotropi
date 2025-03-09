@@ -1,5 +1,5 @@
-import slideUp from './transitions/slideUp';
+import slideY from './transitions/slideY';
 
 export {
-    slideUp,
+    slideY,
 };

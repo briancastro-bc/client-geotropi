@@ -1,9 +1,12 @@
-import { FC, } from 'react';
+import {
+    FC,
+    ChangeEvent,
+} from 'react';
 import {
     Form,
-    FormItemProps,
     Input,
     InputProps,
+    FormItemProps,
 } from 'antd';
 
 type InputType = 'Password' | 'Search' | 'TextArea';
@@ -12,6 +15,7 @@ export type BaseFieldProps = Omit<InputProps, 'prefix'>
     & Pick<FormItemProps, 'required' | 'label' | 'tooltip'>
     & {
         type?: InputType;
+        pattern?: RegExp;
         prefix?: React.ReactNode;
     };
 
@@ -29,21 +33,31 @@ const BaseField: FC<BaseFieldProps> = ({
     label,
     tooltip,
     required,
+    // pattern = /^[^$<>{}]*$/,
+    pattern = /^[a-zA-Z0-9 :; @.,¡!¿?_-]*$/,
     ...props
 }) => {
-    const Component = type ? inputMap[type] : Input;
+    const Component = type && type in inputMap ? inputMap?.[type] : Input;
 
     const fieldProps: any = {
         size: 'large',
         variant: 'outlined',
         classNames: {
-            input: 'font-primary',
+            input: 'font-primary-alt',
             prefix: 'mr-3',
         },
         ...props,
     };
 
     if (type !== 'TextArea' && prefix) fieldProps.prefix = prefix;
+
+    const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const { value: inputValue } = event!.target;
+        if (pattern.test(inputValue) && fieldProps?.onChange) {
+            fieldProps.onChange(event);
+            return;
+        }
+    }
 
     return (
         <Form.Item
@@ -55,7 +69,10 @@ const BaseField: FC<BaseFieldProps> = ({
             }}
             layout='vertical'
         >
-            <Component {...fieldProps}/>
+            <Component
+                {...fieldProps}
+                onChange={handleOnChange}
+            />
         </Form.Item>
     );
 };

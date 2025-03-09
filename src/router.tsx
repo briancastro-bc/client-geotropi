@@ -25,13 +25,26 @@ const routes: Array<RouteObject> = [
                 path: 'me',
                 lazy: () => import('portal/pages/Me')
                     .then(component => ({ Component: component.default, })),
+            },
+            {
+                id: 'new',
+                path: 'new',
+                lazy: () => import('portal/pages/NewWorkspace')
+                    .then(component => ({ Component: component.default, })),
+            },
+            {
+                id: 'not-found',
+                path: '*',
+                hydrateFallbackElement: <FullscreenSkeleton/>,
+                lazy: () => import('theme/pages/NotFound')
+                    .then(component => ({ Component: component.default, })),
             }
         ],
     },
     {
         id: 'signup',
         path: 'signup',
-        // errorElement: <Error/>,
+        errorElement: <Error/>,
         hydrateFallbackElement: <FullscreenSkeleton/>,
         lazy: () => import('portal/pages/Signup')
             .then(component => ({ Component: component.default, })),
@@ -40,13 +53,6 @@ const routes: Array<RouteObject> = [
         path: 'test',
         element: <FullscreenSkeleton/>,
     },
-    {
-        id: 'not-found',
-        path: '*',
-        hydrateFallbackElement: <FullscreenSkeleton/>,
-        lazy: () => import('theme/pages/NotFound')
-            .then(component => ({ Component: component.default, })),
-    }
 ];
 
 const router = createBrowserRouter(routes);

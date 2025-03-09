@@ -23,7 +23,7 @@ import {
     SignupSchema,
 } from 'portal/schemas/SignupSchema';
 import { signupAtom, } from 'portal/state/atoms';
-import { useSaveUserMutation, } from 'portal/hooks/mutations';
+import { useSaveUserMutation, } from 'portal/hooks';
 
 type SignupMobileSecondStepProps = object;
 
@@ -44,11 +44,12 @@ const SignupMobileSecondStep: FC<SignupMobileSecondStepProps> = () => {
 
     const {
         mutateAsync: saveUser,
-        status: saveUserStatus,
+        isPaused: saveUserIsPaused,
+        isPending: saveUserIsPending,
     } = useSaveUserMutation();
 
     const disabled = !isValid;
-    const loading = saveUserStatus === 'pending';
+    const loading = saveUserIsPending && !saveUserIsPaused;
 
     return (
         <motion.div className='h-full flex flex-col'>

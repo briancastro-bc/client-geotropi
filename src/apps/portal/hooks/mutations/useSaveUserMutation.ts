@@ -1,4 +1,3 @@
-import { useMemo, } from 'react';
 import {
     useMutation,
     UseMutationResult,
@@ -7,7 +6,8 @@ import { useTranslation, } from 'react-i18next';
 import { useNavigate, } from 'react-router-dom';
 
 import { User, } from 'contexts/shared/domain/models';
-import { SignupUserUseCase, } from 'contexts/user/application/SignupUserUseCase';
+
+import { SignupUserUseCase, } from 'user/application/SignupUserUseCase';
 
 import { useAppMessage, } from 'shared/hooks';
 import { useContainer, } from 'shared/contexts/container';
@@ -23,10 +23,7 @@ export const useSaveUserMutation: () => UseMutationResult<User | null, Error, Pa
         resolveDependency,
     } = useContainer();
 
-    const useCase = useMemo(
-        () => resolveDependency(SignupUserUseCase),
-        [resolveDependency,],
-    );
+    const useCase = resolveDependency(SignupUserUseCase);
 
     const successMutation = (data: User | null) => {
         if (!data) {

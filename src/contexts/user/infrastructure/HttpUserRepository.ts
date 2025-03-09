@@ -27,6 +27,21 @@ export class HttpUserRepository implements UserRepository {
                 'Content-Type': 'application/json',
             },
         });
+
+        return response;
+    }
+
+    async getCurrentUser(): Promise<User | null> {
+        const endpoint = new UrlBuilder(import.meta.env.VITE_BASE_URL, 'api/users/me')
+            .build();
+
+        const response = await this.httpRepository.get<User>(endpoint, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        });
+
         return response;
     }
 }

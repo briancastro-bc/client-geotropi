@@ -7,3 +7,6 @@ export {
     type Theme,
     type Preferences,
 } from './Preferences';
+export {
+    type History
+} from './History';

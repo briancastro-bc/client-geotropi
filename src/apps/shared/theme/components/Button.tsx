@@ -15,6 +15,9 @@ const CustomButton: FC<CustomButtonProps> = ({
         <Button
             loading={loading}
             className={`font-primary-alt ${props?.className || ''}`}
+            classNames={{
+                icon: `flex items-center ${props?.classNames?.icon || ''}`,
+            }}
             {...props}
         >
             {(loading && showChildrenOnLoading) || !loading ? children : null}

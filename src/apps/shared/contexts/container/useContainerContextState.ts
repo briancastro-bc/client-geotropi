@@ -1,7 +1,7 @@
 import { useMemo, } from 'react';
 
 import {
-    container,
+    container as ioc,
     ValueProvider,
     ClassProvider,
     TokenProvider,
@@ -50,15 +50,32 @@ type ContainerContextState = {
 };
 
 const useContainerContextState: () =>  ContainerContextState = () => {
-    const resolveDependency = useMemo(() => container.resolve.bind(container), []);
+    const container = useMemo(() => ioc, []);
 
-    const resolveDependencies = useMemo(() => container.resolveAll.bind(container), []);
+    const resolveDependency = useMemo(
+        () => container.resolve.bind(container),
+        [container,]
+    );
 
-    const registerDependency = useMemo(() => container.register.bind(container), []);
+    const resolveDependencies = useMemo(
+        () => container.resolveAll.bind(container),
+        [container,]
+    );
 
-    const registerSingletonDependency = useMemo(() => container.registerSingleton.bind(container), []);
+    const registerDependency = useMemo(
+        () => container.register.bind(container),
+        [container,]
+    );
 
-    const isRegisteredDependency = useMemo(() => container.isRegistered.bind(container), []);
+    const registerSingletonDependency = useMemo(
+        () => container.registerSingleton.bind(container),
+        [container,]
+    );
+
+    const isRegisteredDependency = useMemo(
+        () => container.isRegistered.bind(container),
+        [container,]
+    );
 
     return {
         container,

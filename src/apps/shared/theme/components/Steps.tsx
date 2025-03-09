@@ -5,7 +5,10 @@ type CustomStepsProps = StepsProps & object;
 
 const CustomSteps: FC<CustomStepsProps> = (props) => {
     return (
-        <Steps {...props}/>
+        <Steps
+            direction='horizontal'
+            {...props}
+        />
     );
 };
 

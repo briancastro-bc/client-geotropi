@@ -1,8 +1,10 @@
 import { FC, } from 'react';
 import { useTranslation, } from 'react-i18next';
 
+import { useHistory, } from 'shared/hooks';
+
 import {
-    ArrowLeftOutlined,
+    ArrowLeftIcon,
 } from 'theme/icons';
 import {
     motion,
@@ -12,19 +14,33 @@ import { GoBackProps, } from 'theme/layouts/GoBack';
 
 type GoBackMobileProps = GoBackProps;
 
-const GoBackMobile: FC<GoBackMobileProps> = () => {
+const GoBackMobile: FC<GoBackMobileProps> = ({
+    children,
+    showText = true,
+    ...props
+}) => {
     const { t, } = useTranslation();
 
+    const {
+        navigateToPrevious,
+    } = useHistory();
+
     return (
-        <motion.div className='absolute inset-auto'>
+        <motion.div
+            ref={props.ref}
+            className='absolute inset-auto flex items-center'
+        >
             <Button
-                size='large'
+                size='middle'
                 type='link'
                 variant='link'
-                icon={<ArrowLeftOutlined size={40}/>}
+                icon={<ArrowLeftIcon className='size-6'/>}
+                onClick={() => navigateToPrevious()}
+                className='px-0 text-base'
             >
-                {t('common.back')}
+                {showText && t('common.back')}
             </Button>
+            {children}
         </motion.div>
     );
 };
