@@ -15,11 +15,11 @@ import {
     Button,
     Avatar,
 } from 'theme/components';
-import { NavbarProps, } from 'theme/layouts/Navbar';
+import { HeaderProps, } from 'theme/layouts/Header';
 
-type NavbarMobileProps = NavbarProps;
+type HeaderMobileProps = HeaderProps;
 
-const NavbarMobile: FC<NavbarMobileProps> = (props) => {
+const HeaderMobile: FC<HeaderMobileProps> = (props) => {
     const {
         navigateTo,
     } = useHistory();
@@ -65,4 +65,4 @@ const NavbarMobile: FC<NavbarMobileProps> = (props) => {
     );
 };
 
-export default NavbarMobile;
+export default HeaderMobile;

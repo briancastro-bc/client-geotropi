@@ -1,7 +1,7 @@
 import { FC, } from 'react';
 import { Input, } from 'antd';
 
-import BaseField, { BaseFieldProps, } from './BaseField';
+import BaseField, { BaseFieldProps, } from 'theme/components/BaseField';
 
 type CustomSearchFieldProps = Omit<typeof Input['Search'], '$$typeof'>
     & BaseFieldProps

@@ -13,13 +13,18 @@ export {
     HomeIcon,
     UserIcon,
     BellIcon,
+    SunIcon,
+    MoonIcon,
     HeartIcon,
+    LanguageIcon,
     ArrowLeftIcon,
+    PaintBrushIcon,
     HomeModernIcon,
     Squares2X2Icon,
     ArrowLongLeftIcon,
     Bars3BottomLeftIcon,
     MagnifyingGlassIcon,
+    QuestionMarkCircleIcon,
     ChatBubbleBottomCenterIcon,
 } from '@heroicons/react/24/outline';
 export {

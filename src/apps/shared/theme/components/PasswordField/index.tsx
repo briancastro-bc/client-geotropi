@@ -3,7 +3,7 @@ import {
 } from 'react';
 import { Input, } from 'antd';
 
-import BaseField, { BaseFieldProps } from './BaseField';
+import BaseField, { BaseFieldProps } from 'theme/components/BaseField';
 
 type CustomPasswordFieldProps = Omit<typeof Input['Password'], '$$typeof'>
     & BaseFieldProps

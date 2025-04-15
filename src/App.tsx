@@ -6,7 +6,7 @@ import {
 import {
     theme,
     ConfigProvider,
-    App as AppProvider,
+    App as AntdProvider,
 } from 'antd';
 import {
     LazyMotion,
@@ -23,6 +23,7 @@ import { StyleProvider, } from '@ant-design/cssinjs';
 import { store, } from 'shared/state/store';
 import { SocketProvider, } from 'shared/contexts/socket';
 import { LayoutProvider, } from 'shared/contexts/layout';
+import { WorkerProvider, } from 'shared/contexts/worker';
 import { DatabaseProvider, } from 'shared/contexts/database';
 import { ContainerProvider, } from 'shared/contexts/container';
 
@@ -32,51 +33,53 @@ type AppProps = object;
 
 const App: FC<AppProps> = () =>
 <ContainerProvider>
-    <DatabaseProvider>
-        <Provider store={store}>
-            <QueryClientProvider client={queryClient}>
-                <SocketProvider>
-                    <LazyMotion features={domAnimation}>
-                        <StyleProvider layer>
-                            <ConfigProvider
-                                theme={{
-                                    algorithm: theme.defaultAlgorithm,
-                                    token: {
-                                        colorPrimary: 'var(--color-primary-500)',
-                                    },
-                                    components: {
-                                        Button: {
+    <WorkerProvider>
+        <DatabaseProvider>
+            <Provider store={store}>
+                <QueryClientProvider client={queryClient}>
+                    <SocketProvider>
+                        <LazyMotion features={domAnimation}>
+                            <StyleProvider layer>
+                                <ConfigProvider
+                                    theme={{
+                                        algorithm: theme.defaultAlgorithm,
+                                        token: {
                                             colorPrimary: 'var(--color-primary-500)',
-                                            colorLink: 'var(--color-primary-500)',
                                         },
+                                        components: {
+                                            Button: {
+                                                colorPrimary: 'var(--color-primary-500)',
+                                                colorLink: 'var(--color-primary-500)',
+                                            },
 
-                                    }
-                                }}
-                            >
-                                <AppProvider
-                                    message={{
-                                        maxCount: 5,
-                                        duration: 5,
-                                    }}
-                                    notification={{
-                                        maxCount: 3,
-                                        placement: 'topRight',
-                                        duration: 5,
-                                        showProgress: true,
-                                        pauseOnHover: true,
+                                        }
                                     }}
                                 >
-                                    <LayoutProvider>
-                                        <RouterProvider router={router}/>
-                                    </LayoutProvider>
-                                </AppProvider>
-                            </ConfigProvider>
-                        </StyleProvider>
-                    </LazyMotion>
-                </SocketProvider>
-            </QueryClientProvider>
-        </Provider>
-    </DatabaseProvider>
+                                    <AntdProvider
+                                        message={{
+                                            maxCount: 5,
+                                            duration: 5,
+                                        }}
+                                        notification={{
+                                            maxCount: 3,
+                                            placement: 'topRight',
+                                            duration: 5,
+                                            showProgress: true,
+                                            pauseOnHover: true,
+                                        }}
+                                    >
+                                        <LayoutProvider>
+                                            <RouterProvider router={router}/>
+                                        </LayoutProvider>
+                                    </AntdProvider>
+                                </ConfigProvider>
+                            </StyleProvider>
+                        </LazyMotion>
+                    </SocketProvider>
+                </QueryClientProvider>
+            </Provider>
+        </DatabaseProvider>
+    </WorkerProvider>
 </ContainerProvider>
 
 export default App;

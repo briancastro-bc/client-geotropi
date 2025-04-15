@@ -1,28 +1,23 @@
 import {
     FC,
-    useEffect,
-    useCallback,
+    Fragment,
 } from 'react';
 import { Outlet, } from 'react-router-dom';
 import { useIsFetching, } from '@tanstack/react-query';
 
 import {
-    useWorker,
     useCurrentUserQuery,
 } from 'shared/hooks';
 import { useLayout, } from 'shared/contexts/layout';
 
 import {
     motion,
+    Skeleton,
 } from 'theme/components';
 
-import Navbar from 'theme/layouts/Navbar';
+import Header from 'theme/layouts/Header';
 import BottomNav from 'theme/layouts/BottomNav';
-
-const WORKER_URL = new URL(
-    'src/workers/main',
-    `${location.origin}${import.meta.env.BASE_URL}`
-);
+import LinearProgress from 'theme/layouts/LinearProgress';
 
 type RootProps = object;
 
@@ -35,60 +30,29 @@ const Root: FC<RootProps> = () => {
         showBottomNavigation,
     } = useLayout();
 
-    const mainWorkerInit = useCallback(
-        () => new Worker(
-            new URL(WORKER_URL)
-        ),
-        [],
-    );
-
-    const onWorkerMessage: (message: MessageEvent<WorkerMessage>) => void = useCallback(
-        ({ data: payload, }) => {
-            const {
-                type,
-                data,
-            } = payload;
-        },
-        [],
-    );
-
-    const mainWorker = useWorker(
-        WORKER_URL.toString(),
-        mainWorkerInit,
-        onWorkerMessage,
-    );
-
     const fetching = useIsFetching();
 
     const {
         data: user,
     } = useCurrentUserQuery();
 
-    useEffect(() => {
-        if (mainWorker?.current) mainWorker?.current?.postMessage({
-            type: 'test',
-            data: 'asjdkalsjd',
-        } as WorkerMessage);
-    }, [mainWorker,]);
-
     return (
-        <motion.div className='relative min-h-screen flex flex-col overflow-x-hidden'>
-            {!!fetching && <p>Fetching...</p>}
-            {showNavbar && <Navbar ref={navbarRef}/>}
+        <Fragment>
+            <LinearProgress show={!!fetching}/>
+            {/* {showNavbar && <Header ref={navbarRef}/>} */}
+            <Header/>
             <motion.main
-                style={{
-                    height: `${contentHeight}px`,
-                }}
+                // style={{
+                //     height: `${contentHeight}px`,
+                // }}
                 className='overflow-y-auto'
             >
                 <Outlet
-                    context={{
-                        user,
-                    }}
+                    // context={{ user, }}
                 />
             </motion.main>
-            {showBottomNavigation && <BottomNav ref={bottomNavigationRef}/>}
-        </motion.div>
+            {/* {showBottomNavigation && <BottomNav ref={bottomNavigationRef}/>} */}
+        </Fragment>
     );
 };
 

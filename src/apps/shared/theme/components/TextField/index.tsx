@@ -2,7 +2,7 @@ import {
     FC,
 } from 'react';
 
-import BaseField, { BaseFieldProps } from './BaseField';
+import BaseField, { BaseFieldProps } from 'theme/components/BaseField';
 
 type CustomTextFieldProps = BaseFieldProps;
 

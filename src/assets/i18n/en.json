@@ -14,6 +14,17 @@
             "previous": "Previous",
             "next": "Next"
         },
+        "header": {
+            "brand": "My App",
+            "actions": {
+                "help": "Help",
+                "search": "Search",
+                "profile": "Profile",
+                "notifications": "Notifications",
+                "language": "Language",
+                "theme": "Theme"
+            }
+        },
         "bottom": {
             "home": "Home",
             "messages": "Messages",

@@ -20,12 +20,13 @@ export const useCurrentUserQuery: () => UseQueryResult<User | null, Error> = () 
     const query = useQuery({
         queryKey: ['currentUser',],
         queryFn: async () => {
-            const user = await useCase.execute();
-            if (!user) return null;
+            // const user = await useCase.execute();
+            // if (!user) return null;
 
-            await put('users', user, user?.ID);
+            // await put('users', user, user?.ID);
 
-            return user;
+            // return user;
+            return null;
         },
         retry: 1,
         retryDelay: secondsToMilliseconds(5),

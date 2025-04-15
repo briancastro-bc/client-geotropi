@@ -12,32 +12,32 @@ const routes: Array<RouteObject> = [
         errorElement: <Error/>,
         hydrateFallbackElement: <FullscreenSkeleton/>,
         lazy: () => import('theme/pages/Root')
-            .then(component => ({ Component: component.default, })),
+            .then(module => ({ Component: module.default, })),
         children: [
             {
                 id: 'landing',
                 path: '',
                 lazy: () => import('portal/pages/Landing')
-                    .then(component => ({ Component: component.default, })),
+                    .then(module => ({ Component: module.default, })),
             },
             {
                 id: 'me',
                 path: 'me',
                 lazy: () => import('portal/pages/Me')
-                    .then(component => ({ Component: component.default, })),
+                    .then(module => ({ Component: module.default, })),
             },
             {
                 id: 'new',
                 path: 'new',
                 lazy: () => import('portal/pages/NewWorkspace')
-                    .then(component => ({ Component: component.default, })),
+                    .then(module => ({ Component: module.default, })),
             },
             {
                 id: 'not-found',
                 path: '*',
                 hydrateFallbackElement: <FullscreenSkeleton/>,
                 lazy: () => import('theme/pages/NotFound')
-                    .then(component => ({ Component: component.default, })),
+                    .then(module => ({ Component: module.default, })),
             }
         ],
     },

@@ -4,6 +4,7 @@ import '@ant-design/v5-patch-for-react-19';
 import './index.css';
 
 import {
+    lazy,
     Suspense,
     StrictMode,
 } from 'react';
@@ -13,8 +14,9 @@ import { initReactI18next, } from 'react-i18next';
 import i18next from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-import App from './App.tsx';
 import FullscreenSkeleton from 'theme/layouts/FullscreenSkeleton';
+
+const App = lazy(() => import('./App'));
 
 async function init(): Promise<void> {
     await i18next
@@ -42,9 +44,9 @@ function render(): void {
     const root = createRoot(rootElement!);
     root.render(
         <StrictMode>
-            <Suspense fallback={<FullscreenSkeleton />}>
+            {/* <Suspense fallback={<FullscreenSkeleton/>}> */}
                 <App/>
-            </Suspense>
+            {/* </Suspense> */}
         </StrictMode>
     );
 }

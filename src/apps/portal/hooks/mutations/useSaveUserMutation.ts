@@ -2,22 +2,16 @@ import {
     useMutation,
     UseMutationResult,
 } from '@tanstack/react-query';
-import { useTranslation, } from 'react-i18next';
 import { useNavigate, } from 'react-router-dom';
 
 import { User, } from 'contexts/shared/domain/models';
 
 import { SignupUserUseCase, } from 'user/application/SignupUserUseCase';
 
-import { useAppMessage, } from 'shared/hooks';
 import { useContainer, } from 'shared/contexts/container';
 
 export const useSaveUserMutation: () => UseMutationResult<User | null, Error, Partial<User>> = () => {
-    const { t, } = useTranslation();
-
     const navigate = useNavigate();
-
-    const message = useAppMessage();
 
     const {
         resolveDependency,
@@ -31,18 +25,11 @@ export const useSaveUserMutation: () => UseMutationResult<User | null, Error, Pa
             return;
         }
 
-        message.success({
-            content: t('success.done'),
-        });
-
         navigate('/me');
     };
 
     const errorMutation = (error: Error) => {
         console.error(error);
-        message.error({
-            content: t('errors.default'),
-        });
     };
 
     const mutation = useMutation({
